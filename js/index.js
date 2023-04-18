@@ -25,6 +25,18 @@ const listar=()=>{
     }
     bodytable.innerHTML = usuarios;
 }
+//validar
+// Función para validar si un id ya existe:
+function validarId(id) {
+  for (let i = 0; i < tableUsers.length; i++) {
+    if (tableUsers[i].idU === id) {
+      return true; // el id ya existe
+    }
+  }
+  return false; // el id no existe
+}
+
+//registrar
 let a = 3;
 const registrar=()=>{
     const idU = document.getElementById('idU').value ;
@@ -37,21 +49,27 @@ const registrar=()=>{
     const dir = document.getElementById('dir').value ;
     const pass = document.getElementById('pass').value ;
     const cpass = document.getElementById('cpass').value ;
-
-    bodytable.innerHTML +=`<tr>
-    <th scope="row">${a+1}</th>
-    <td>${idU}</td>
-    <td>${names}</td>
-    <td>${lastNames}</td>
-    <td>${gender}</td>
-    <td>${birthdate}</td>
-    <td>${email}</td>
-    <td>${cellphone}</td>
-    <td>${dir}</td>
-    <td>${pass}</td>
-    <td>${cpass}</td>
-  </tr>`;
-
-  const nuevo = {idU, names, lastNames, gender, birthdate, email, cellphone, dir, pass, cpass};
-  tableUsers.push(nuevo);
+    if (validarId(idU)) {
+      alert(`El id ${idU} ya existe`);
+    } else if (idU == ""){
+      alert("ID no puede estar vacío");
+    }else if (!/^[0-9]+$/.test(idU)){
+      alert("ID no puede CONTENER LETRAS");
+    } else if (names == ""){
+      alert(" NOMBRES no puede estar vacío");
+    } else if (lastNames == ""){
+      alert(" APELLIDOS no puede estar vacío");
+    } else if (birthdate == ""){
+      alert(" FECHA CUMPLEAÑOS no puede estar vacío");
+    } else if (email == ""){
+      alert("CORREO no puede estar vacío");
+    } else if (pass != cpass || (pass =="" || cpass=="")){
+      alert("verifique password, no coinciden o estan vacias!!");
+    }else {
+      bodytable.innerHTML += `<tr><th scope="row">${a+1}</th><td>${idU}</td><td>${names}</td><td>${lastNames}</td><td>${gender}</td><td>${birthdate}</td><td>${email}</td><td>${cellphone}</td><td>${dir}</td><td>${pass}</td><td>${cpass}</td></tr>`;
+      const nuevo = {idU, names, lastNames, gender, birthdate, email, cellphone, dir, pass, cpass};
+      tableUsers.push(nuevo);
+      alert(idU);
+    }
+    
 }
