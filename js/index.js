@@ -63,8 +63,8 @@ const registrar=()=>{
       alert(" FECHA CUMPLEAÑOS no puede estar vacío");
     } else if (email == ""){
       alert("CORREO no puede estar vacío");
-    } else if (pass != cpass || (pass =="" || cpass=="")){
-      alert("verifique password, no coinciden o estan vacias!!");
+   // } else if (pass != cpass || (pass =="" || cpass=="")){
+     // alert("verifique password, no coinciden o estan vacias!!");
     }else {
       bodytable.innerHTML += `<tr><th scope="row">${a+1}</th><td>${idU}</td><td>${names}</td><td>${lastNames}</td><td>${gender}</td><td>${birthdate}</td><td>${email}</td><td>${cellphone}</td><td>${dir}</td><td>${pass}</td><td>${cpass}</td></tr>`;
       const nuevo = {idU, names, lastNames, gender, birthdate, email, cellphone, dir, pass, cpass};
